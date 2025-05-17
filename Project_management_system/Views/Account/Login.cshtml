@@ -1,0 +1,40 @@
+﻿@model Project_management_system.ViewModel.LoginDTO
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+}
+
+<div class="auth-wrap">
+    <div class="form">
+        <h2>Login</h2>
+        <form asp-action="Login" method="post" class="wrap">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="alpha-input-group margin">
+                <label class="alpha-input-label" asp-for="Email"></label>
+                <input asp-for="Email" class="alpha-input form-control" placeholder="Your email address" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="alpha-input-group margin">
+                <label class="alpha-input-label" asp-for="Password"></label>
+                <input asp-for="Password" class="alpha-input form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="alpha-input-group margin">
+                <div class="alpha-checkbox">
+                    <input type="checkbox" id="accept-terms" class="custom-checkbox" />
+                    <label for="accept-terms">Remember Me</label>
+                </div>
+            </div>
+            <button type="submit" class="btn-auth-form">Login</button>
+        </form>
+
+        <p class="auth-footer">Don't have an account? <a href="/Account/Register">Sign Up</a></p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

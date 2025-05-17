@@ -1,0 +1,55 @@
+﻿@model Project_management_system.ViewModel.RegisterDTO
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="auth-wrap">
+    <div class="form">
+        <h2>Create Account</h2>
+        <div class="wrap">
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="alpha-input-group margin">
+                    <label asp-for="FullName" class="alpha-input-label"></label>
+                    <input asp-for="FullName" class="alpha-input form-control" placeholder="Your full name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="alpha-input-group margin">
+                    <label asp-for="Email" class="alpha-input-label"></label>
+                    <input asp-for="Email" class="alpha-input form-control" placeholder="Your email address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="alpha-input-group margin">
+                    <label asp-for="Password" class="alpha-input-label"></label>
+                    <input asp-for="Password" class="alpha-input form-control" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="alpha-input-group margin">
+                    <label asp-for="ConfirmPassword" class="alpha-input-label"></label>
+                    <input asp-for="ConfirmPassword" class="alpha-input form-control" placeholder="Confirm your password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="alpha-input-group margin">
+                    <div class="alpha-checkbox">
+                        <input asp-for="TermsConditions" class="custom-checkbox" type="checkbox" id="accept-terms" />
+                        <label for="accept-terms">
+                            I accept <a class="terms-link" href="#">Terms and Conditions</a>
+                        </label>
+                    </div>
+                    <span asp-validation-for="TermsConditions" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn-auth-form">Create Account</button>
+            </form>
+        </div>
+        <p class="auth-footer">Already have an account? <a href="/Account/Login">Login</a></p>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,531 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .error-message{
+        color:red;
+    }
+</style>
+<div class="alpha-content">
+    <div class="page-card-header">
+        <div>
+            <h1>Projects</h1>
+        </div>
+        <div>
+            <button class="alpha-primary-btn" data-bs-toggle="modal" data-bs-target="#addProject">
+                <img src="~/Customer/assets/imgaes/icons/plus.svg" alt=""> Add Project
+            </button>
+        </div>
+    </div>
+    <div class="page-content">
+        <ul class="nav nav-tabs project-tabs mb-3" id="nav-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-status="" id="nav-all-tab" data-bs-toggle="pill"
+                        data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true">
+                    All [0]
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-status="Started" id="nav-started-tab" data-bs-toggle="pill"
+                        data-bs-target="#nav-started" type="button" role="tab" aria-controls="nav-started" aria-selected="false">
+                    Started [0]
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-status="Complete" id="nav-completed-tab" data-bs-toggle="pill"
+                        data-bs-target="#nav-completed" type="button" role="tab" aria-controls="nav-completed" aria-selected="false">
+                    Completed [0]
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab" tabindex="0">
+                <div id="nav-all-container"></div> 
+            </div>
+            <div class="tab-pane fade" id="nav-started" role="tabpanel" aria-labelledby="nav-started-tab" tabindex="0">
+                <div id="nav-started-container"></div> 
+            </div>
+            <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab" tabindex="0">
+                <div id="nav-completed-container"></div> 
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- add project modal  -->
+<div class="modal fade alpha-modal" id="addProject" tabindex="-1" aria-labelledby="addProjectLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addProjectLabel">Add Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="projectForm" class="alpha-project-form">
+                    <div style="margin-bottom: 120px;">
+                        <div class="project-img mb-5">
+                            <img src="~/Customer/assets/imgaes/projects/project_lg.png" alt="">
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Project Name</label>
+                            <input type="text" class="alpha-input" name="Name" id="Name" placeholder="Project Name">
+                            <span class="text-danger" id="error-Name"></span>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Client Name</label>
+                            <input type="text" class="alpha-input" name="ClientName" id="ClientName" placeholder="Client Name">
+                            <span class="text-danger" id="error-ClientName"></span>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Status</label>
+                            <select class="form-control" name="ProjectStatus" id="ProjectStatus">
+                                <option value="" selected disabled>Please select status</option>
+                                <option value="NotStarted">Not Started</option>
+                                <option value="Started">Started</option>
+                                <option value="Complete">Complete</option>
+                            </select>
+                            <span class="text-danger" id="error-ProjectStatus"></span>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Description</label>
+                            <div class="description-container">
+                                <div id="summernote" name="Description"></div>
+                            </div>
+                            <span class="text-danger" id="error-Description"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alpha-input-group margin">
+                                    <label class="alpha-input-label">Start Date</label>
+                                    <input type="date" class="alpha-input" name="StartDate" id="StartDate">
+                                    <div class="calendar-icon"><img src="~/Customer/assets/imgaes/icons/calendar.svg" alt=""></div>
+
+                                </div>
+                                <span class="text-danger" id="error-StartDate"></span>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alpha-input-group margin">
+                                    <label class="alpha-input-label">End Date</label>
+                                    <input type="date" class="alpha-input" name="EndDate" id="EndDate">
+                                    <div class="calendar-icon"><img src="~/Customer/assets/imgaes/icons/calendar.svg" alt=""></div>
+
+                                </div>
+                                <span class="text-danger" id="error-EndDate"></span>
+
+                            </div>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Budget</label>
+                            <input type="number" class="alpha-input group" name="Budget" id="Budget" placeholder="0">
+                            <div class="dollar-sign">
+                                <img src="~/Customer/assets/imgaes/icons/dollar.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="alpha-primary-btn w-100 justify-content-center">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- edit project modal  -->
+<div class="modal fade alpha-modal" id="editProject" tabindex="-1" aria-labelledby="editProjectLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editProjectLabel">Edit Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form  class="alpha-project-form">
+                    <input type="hidden" name="id" />
+                    <div style="margin-bottom: 120px;">
+                        <div class="project-img mb-5">
+                            <img src="~/Customer/assets/imgaes/projects/project_lg.png" alt="">
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Project Name</label>
+                            <input type="text" class="alpha-input" name="Name" placeholder="Project Name">
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Client Name</label>
+                            <input type="text" class="alpha-input" name="ClientName" placeholder="Client Name">
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Status</label>
+                            <select class="form-control" name="ProjectStatus" >
+                                <option value="" selected disabled>Please select status</option>
+                                <option value="NotStarted">Not Started</option>
+                                <option value="Started">Started</option>
+                                <option value="Complete">Complete</option>
+                            </select>
+                            <span class="text-danger" id="error-ProjectStatus"></span>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Description</label>
+                            <div class="description-container">
+                                <div id="summernote2" name="Description"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alpha-input-group margin">
+                                    <label class="alpha-input-label">Start Date</label>
+                                    <input type="date" class="alpha-input" name="StartDate">
+                                    <div class="calendar-icon"><img src="~/Customer/assets/imgaes/icons/calendar.svg" alt=""></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alpha-input-group margin">
+                                    <label class="alpha-input-label">End Date</label>
+                                    <input type="date" class="alpha-input" name="EndDate">
+                                    <div class="calendar-icon"><img src="~/Customer/assets/imgaes/icons/calendar.svg" alt=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alpha-input-group margin">
+                            <label class="alpha-input-label">Budget</label>
+                            <input type="number" class="alpha-input group" name="Budget" placeholder="0">
+                            <div class="dollar-sign"><img src="~/Customer/assets/imgaes/icons/dollar.svg" alt=""></div>
+                        </div>
+                    </div>
+                    <button type="button" class="alpha-primary-btn w-100 justify-content-center" onclick="updateProject()">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        fetchProjectList('nav-all-container', ''); 
+
+        $('.project-tabs .nav-link').on('click', function () {
+            const status = $(this).data('status');
+            const targetPaneId = $(this).attr('data-bs-target');
+            const containerId = targetPaneId.replace('#', '') + '-container';
+            fetchProjectList(containerId, status);
+        });
+    });
+
+
+    function fetchProjectList(containerId, status = '') {
+        $.ajax({
+            url: '/Project/GetProjectList',
+            method: 'GET',
+            data: { status: status },
+            success: function (data) {
+                if (data.success !== false) {
+                    var projectListHtml = '<div class="row">';
+                    data.forEach(function (project) {
+                        projectListHtml += `
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="project-card">
+                            <div class="header">
+                                <div class="project-card-left">
+                                    <div class="img-wrap">
+                                        <img src="/Customer/assets/imgaes/projects/p1.png" alt="Project Image">
+                                    </div>
+                                    <div>
+                                        <h4>${project.name}</h4>
+                                        <span>${project.clientName}</span>
+                                    </div>
+                                </div>
+                                <div class="project-card-right alpha-dropdown">
+                                    <div class="actions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="/Customer/assets/imgaes/icons/more.svg" alt="">
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="javascript:void(0)" onclick="openEditProjectModal(${project.id})">
+                                                    <img src="/Customer/assets/imgaes/icons/edit.svg" alt="">
+                                                    <span>Edit</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" onclick="confirmDelete(${project.id})">
+                                                    <img src="/Customer/assets/imgaes/icons/delete.svg" alt="">
+                                                    <span class="delete">Delete</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <p>${project.description}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                    });
+
+                    projectListHtml += '</div>';
+                    $('#' + containerId).html(projectListHtml);
+                    updateAllTabsCount();
+                }
+                else {
+                    updateAllTabsCount();
+                    $('#' + containerId).html('<p class="text-center" style="margin-top: 15%;">No projects found.</p>');
+                }
+            },
+            error: function () {
+                $('#' + containerId).html('<p>Something went wrong while fetching the projects.</p>');
+            }
+        });
+    }
+
+
+    $('#projectForm').on('submit', function (e) {
+        e.preventDefault();
+
+        $('span.text-danger').text('');
+        const descriptionContent = $('#summernote').summernote('code');
+
+        const plainText = $('<div>').html(descriptionContent).text().trim();
+
+        if (plainText === '') {
+            $('#error-Description').text('Description is required.');
+            return;
+        }
+        const selectedStatus = $('#ProjectStatus').val();
+        if (selectedStatus === '') {
+            $('#error-ProjectStatus').text('Status is required.');
+            return;
+        }
+        const activeTab = $('.project-tabs .nav-link.active');
+        const activeStatus = activeTab.data('status');
+        const containerIdMap = {
+            '': 'nav-all-container',
+            'Started': 'nav-started-container',
+            'Complete': 'nav-completed-container'
+        };
+        const formData = {
+            Name: $('#Name').val(),
+            ProjectStatus: selectedStatus,
+            ClientName: $('#ClientName').val(),
+            Description: descriptionContent,
+            StartDate: $('#StartDate').val(),
+            EndDate: $('#EndDate').val(),
+            Budget: $('#Budget').val()
+        };
+
+        $.ajax({
+            url: '/Project/Create',
+            method: 'POST',
+            data: formData,
+            success: function (res) {
+                if (res.success) {
+                    $('#addProject').modal('hide');
+
+                    const activeTab = $('.project-tabs .nav-link.active');
+                    const activeStatus = activeTab.data('status');
+                    const containerIdMap = {
+                        '': 'nav-all-container',
+                        'Started': 'nav-started-container',
+                        'Complete': 'nav-completed-container'
+                    };
+
+                    fetchProjectList(containerIdMap[activeStatus], activeStatus);
+                    updateAllTabsCount();
+                    $('#projectForm')[0].reset();
+                    $('span.text-danger').text('');    
+                    $('#summernote').summernote('reset');
+                } else {
+                    for (const key in res.errors) {
+                        $('#error-' + key).text(res.errors[key]);
+                    }
+                }
+            },
+            error: function () {
+                alert("Something went wrong.");
+            }
+        });
+    });
+
+    function confirmDelete(projectId) {
+        if (confirm("Are you sure you want to delete this project?")) {
+            deleteProject(projectId);
+        }
+    }
+    function deleteProject(projectId) {
+        $.ajax({
+            url: '/Project/DeleteProject',  
+            method: 'POST',
+            data: { id: projectId },  
+            success: function (response) {
+                if (response.success) {
+                    updateAllTabsCount();
+                    const activeTab = $('.project-tabs .nav-link.active');
+                    const activeStatus = activeTab.data('status');
+                    const containerIdMap = {
+                        '': 'nav-all-container',
+                        'Started': 'nav-started-container',
+                        'Complete': 'nav-completed-container'
+                    };
+                    fetchProjectList(containerIdMap[activeStatus], activeStatus);
+                } else {
+                    alert("Failed to delete project.");
+                }
+            },
+            error: function () {
+                alert("An error occurred while trying to delete the project.");
+            }
+        });
+    }
+
+    function openEditProjectModal(projectId) {
+        $.ajax({
+            url: '/Project/GetProjectDetails', 
+            method: 'GET',
+            data: { id: projectId }, 
+            success: function (response) {
+                if (response.success) {
+                    $('#editProject').find('input[name="Name"]').val(response.projectName);
+                    $('#editProject').find('input[name="ClientName"]').val(response.clientName);
+                    $('#editProject').find('#summernote2').summernote('code', response.description);
+                    $('#editProject').find('input[name="StartDate"]').val(response.startDate);
+                    $('#editProject').find('input[name="EndDate"]').val(response.endDate);
+                    $('#editProject').find('input[name="Budget"]').val(response.budget);
+                    $('#editProject').find('input[name="id"]').val(response.projectId);
+                    $('#editProject').find('select[name="ProjectStatus"]').val(response.projectStatus);
+                    $('#editProject').modal('show');
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                alert("An error occurred while fetching the project details.");
+            }
+        });
+    }
+
+
+    function validateProjectForm() {
+        var isValid = true;
+        $('.error-message').remove();
+        var projectName = $('#editProject').find('input[name="Name"]').val();
+        var clientName = $('#editProject').find('input[name="ClientName"]').val();
+        var description = $('#summernote2').summernote('code'); 
+        var startDate = $('#editProject').find('input[name="StartDate"]').val();
+        var endDate = $('#editProject').find('input[name="EndDate"]').val();
+        var budget = $('#editProject').find('input[name="Budget"]').val();
+
+        if (projectName.trim() === '') {
+            isValid = false;
+            $('#editProject').find('input[name="Name"]').after('<div class="error-message">Project Name is required.</div>');
+        }
+
+        if (clientName.trim() === '') {
+            isValid = false;
+            $('#editProject').find('input[name="ClientName"]').after('<div class="error-message">Client Name is required.</div>');
+        }
+
+        if (description.trim() === '' || description === '<p><br></p>') {  
+            isValid = false;
+            $('#summernote2').after('<div class="error-message">Description is required.</div>');
+        }
+
+        if (startDate === '') {
+            isValid = false;
+            $('#editProject').find('input[name="StartDate"]').after('<div class="error-message">Start Date is required.</div>');
+        }
+
+        if (endDate === '') {
+            isValid = false;
+            $('#editProject').find('input[name="EndDate"]').after('<div class="error-message">End Date is required.</div>');
+        }
+
+        if (budget === '' || isNaN(budget) || parseFloat(budget) <= 0) {
+            isValid = false;
+            $('#editProject').find('input[name="Budget"]').after('<div class="error-message">Budget must be a valid number greater than zero.</div>');
+        }
+
+        return isValid;
+    }
+
+    function updateProject() {
+        if (validateProjectForm()) {
+            var projectData = {
+                id: $('#editProject').find('input[name="id"]').val(),
+                name: $('#editProject').find('input[name="Name"]').val(),
+                clientName: $('#editProject').find('input[name="ClientName"]').val(),
+                description: $('#summernote2').summernote('code'),
+                startDate: $('#editProject').find('input[name="StartDate"]').val(),
+                endDate: $('#editProject').find('input[name="EndDate"]').val(),
+                budget: $('#editProject').find('input[name="Budget"]').val(),
+                projectStatus: $('#editProject').find('select[name="ProjectStatus"]').val(),
+
+            };
+            $.ajax({
+                url: '/Project/UpdateProject',
+                method: 'POST',
+                data: projectData,
+                success: function (response) {
+                    if (response.success) {
+
+                        $('#editProject').modal('hide');
+
+                        const activeTab = $('.project-tabs .nav-link.active');
+                        const activeStatus = activeTab.data('status');
+                        const containerIdMap = {
+                            '': 'nav-all-container',
+                            'Started': 'nav-started-container',
+                            'Complete': 'nav-completed-container'
+                        };
+                        fetchProjectList(containerIdMap[activeStatus], activeStatus);
+                        updateAllTabsCount();
+                    } else {
+                        alert('Error updating project');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while updating the project.');
+                }
+            });
+        }
+    }
+
+    function updateAllTabsCount() {
+
+        $.ajax({
+            url: '/Project/GetProjectList',
+            method: 'GET',
+            data: { status: '' }, 
+            success: function (data) {
+                if (data.success !== false) {
+                    $('#nav-all-tab').text(`All [${data.length}]`);
+                }
+            }
+        });
+
+        $.ajax({
+            url: '/Project/GetProjectList',
+            method: 'GET',
+            data: { status: 'Started' },
+            success: function (data) {
+                if (data.success !== false) {
+                    $('#nav-started-tab').text(`Started [${data.length}]`);
+                }
+            }
+        });
+
+        $.ajax({
+            url: '/Project/GetProjectList',
+            method: 'GET',
+            data: { status: 'Complete' },
+            success: function (data) {
+                if (data.success !== false) {
+                    $('#nav-completed-tab').text(`Completed [${data.length}]`);
+                }
+            }
+        });
+    }
+
+</script>

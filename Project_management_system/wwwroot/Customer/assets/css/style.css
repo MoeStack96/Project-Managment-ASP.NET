@@ -1,0 +1,612 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+.alpha-input-group {
+  position: relative;
+}
+.alpha-input-group label.alpha-input-label {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 5px;
+}
+.alpha-input-group input.alpha-input {
+  width: 100%;
+  height: 48px;
+  background: #FFFFFF;
+  border: 1px solid rgb(235, 238, 242);
+  border-radius: 14px;
+  padding: 10px 20px;
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.alpha-input-group input.alpha-input::placeholder {
+  font-family: Nunito;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgb(99, 112, 133);
+}
+.alpha-input-group input.alpha-input:focus {
+  border: 1px solid #2D99FF;
+  box-shadow: 0 0 0 0.25rem rgba(45, 153, 255, 0.25);
+}
+.alpha-input-group input.alpha-input.group {
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.alpha-input-group input[type=date]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+.alpha-input-group .calendar-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 1px;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+.alpha-input-group .dollar-sign {
+  position: absolute;
+  left: 12px;
+  bottom: 1px;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+.alpha-input-group .alpha-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.alpha-input-group .alpha-checkbox .custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  border: 1px solid #d1d1d6;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.alpha-input-group .alpha-checkbox .custom-checkbox:checked {
+  background-color: #2196F3;
+  border-color: #2196F3;
+}
+.alpha-input-group .alpha-checkbox .custom-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.alpha-input-group .alpha-checkbox label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 400;
+  cursor: pointer;
+}
+.alpha-input-group .alpha-checkbox label .terms-link {
+  color: #2D99FF;
+  text-decoration: none;
+  cursor: pointer;
+}
+.alpha-input-group .alpha-checkbox label .terms-link:hover {
+  text-decoration: underline;
+}
+
+.alpha-input-group.margin {
+  margin-bottom: 20px;
+}
+
+.auth-body {
+  background-color: #eaecf0;
+}
+.auth-body .auth-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px 0;
+}
+.auth-body .auth-wrap .form {
+  width: 600px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0px 20px 30px -18px rgba(4, 15, 21, 0.1);
+}
+.auth-body .auth-wrap .form h2 {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
+.auth-body .auth-wrap .form .wrap {
+  width: 400px;
+  margin: 0 auto 150px auto;
+}
+.auth-body .auth-wrap .form .wrap .btn-auth-form {
+  background-color: #2D99FF;
+  color: white;
+  width: 100%;
+  height: 48px;
+  border: 1px solid #2D99FF;
+  border-radius: 14px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-body .auth-wrap .form .auth-footer {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin: 0;
+}
+.auth-body .auth-wrap .form .auth-footer a {
+  text-decoration: none;
+  color: #2D99FF;
+}
+
+.main-body {
+  background-color: #f1f3f7;
+}
+
+.alpha-sidebar {
+  width: 270px;
+  height: 100vh;
+  padding: 0 15px;
+  border: 1px solid #E3E5E8;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.alpha-sidebar .logo-wrap {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+.alpha-sidebar .logo-wrap img {
+  width: 122px;
+}
+.alpha-sidebar .sidebar-content {
+  height: calc(100vh - 80px);
+}
+.alpha-sidebar .sidebar-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.alpha-sidebar .sidebar-content ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  height: 56px;
+  padding: 10px 15px;
+  border-radius: 16px;
+  display: flex;
+}
+.alpha-sidebar .sidebar-content ul li a span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000;
+}
+.alpha-sidebar .sidebar-content ul li.active a {
+  background-color: rgba(26, 142, 255, 0.1);
+}
+.alpha-sidebar .sidebar-content ul li.active a span {
+  color: #2D99FF;
+}
+
+.alpha-header {
+  height: 80px;
+  width: calc(100% - 270px);
+  padding: 0 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 270px;
+  border-bottom: 1px solid #E3E5E8;
+  background-color: #f1f3f7;
+  z-index: 99;
+}
+.alpha-header .alpha-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.alpha-header .alpha-header-right .alpha-setting-header {
+  cursor: pointer;
+}
+.alpha-header .alpha-header-right .divider {
+  width: 1px;
+  height: 30px;
+  background-color: #E3E5E8;
+}
+.alpha-header .alpha-header-right .setting-menu {
+  transform: translate(0px, 40px) !important;
+  width: 300px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0px 40px 20px -30px rgba(4, 15, 21, 0.1019607843);
+  padding: 8px;
+}
+.alpha-header .alpha-header-right .setting-menu li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  height: 48px;
+}
+.alpha-header .alpha-header-right .setting-menu li a span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1A1926;
+}
+.alpha-header .alpha-header-right .setting-menu li.profile a {
+  background-color: #F5F7FA;
+  height: 64px;
+}
+.alpha-header .alpha-header-right .setting-menu li.profile a .img-wrap {
+  height: 40px;
+  width: 40px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+.alpha-header .alpha-header-right .setting-menu li.profile a .img-wrap img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.alpha-content {
+  padding: 30px;
+  height: calc(100vh - 80px);
+  width: calc(100% - 270px);
+  margin-left: 270px;
+  margin-top: 80px;
+}
+
+.alpha-primary-btn {
+  background-color: #2D99FF;
+  border-radius: 14px;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  cursor: pointer;
+  height: 48px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0px 4px 16px 0px rgba(0, 129, 255, 0.1803921569);
+  min-width: 150px;
+}
+
+.page-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.page-card-header h1 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1A1926;
+  margin: 0;
+}
+
+.project-tabs.nav-tabs .nav-item .nav-link,
+.project-tabs.nav-tabs .nav-link {
+  color: #637085;
+  border: none !important;
+  background-color: transparent;
+  position: relative;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.project-tabs.nav-tabs .nav-link.active {
+  color: #2D99FF;
+}
+
+.project-tabs.nav-tabs .nav-link.active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #2D99FF;
+  bottom: 0;
+  left: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.project-tabs .nav-link:focus,
+.project-tabs .nav-link:hover {
+  color: #2D99FF !important;
+  border: unset !important;
+  outline: unset !important;
+}
+
+.alpha-dropdown {
+  position: relative;
+}
+.alpha-dropdown .dropdown-menu {
+  width: 230px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0px 40px 20px -30px rgba(4, 15, 21, 0.1019607843);
+  padding: 2px 8px;
+  box-shadow: 0px 16px 80px 0px rgba(4, 15, 21, 0.1490196078);
+  left: -190px !important;
+}
+.alpha-dropdown .dropdown-menu li a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  height: 48px;
+  position: relative;
+  margin: 6px 0;
+}
+.alpha-dropdown .dropdown-menu li a:hover {
+  background-color: #F5F7FA;
+}
+.alpha-dropdown .dropdown-menu li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #E3E5E8;
+  bottom: -4px;
+  left: 0;
+}
+.alpha-dropdown .dropdown-menu li a span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1A1926;
+}
+.alpha-dropdown .dropdown-menu li a span.delete {
+  color: #FF6640;
+}
+.alpha-dropdown .dropdown-menu li:last-child a::after {
+  content: unset;
+}
+
+.project-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 20px 30px -18px rgba(4, 15, 21, 0.1019607843);
+  min-height: 276px;
+}
+.project-card .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+.project-card .header .project-card-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.project-card .header .project-card-left .img-wrap {
+  height: 56px;
+  width: 56px;
+  border-radius: 14px;
+}
+.project-card .header .project-card-left .img-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+}
+.project-card .header .project-card-left h4 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1A1926;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.project-card .header .project-card-left span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #637085;
+}
+.project-card .header .project-card-right .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 14px;
+  cursor: pointer;
+  color: #637085;
+  position: relative;
+  top: -10px;
+  right: -10px;
+}
+.project-card .header .project-card-right .actions:hover {
+  background-color: #F5F7FA;
+}
+.project-card .body {
+  padding-top: 20px;
+}
+.project-card .body p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #28263B;
+}
+
+.alpha-modal .modal-content {
+  border-radius: 16px;
+  border: none !important;
+  box-shadow: 0px 20px 30px -18px rgba(4, 15, 21, 0.1019607843);
+}
+.alpha-modal .modal-content .modal-header {
+  border: none !important;
+  padding: 30px;
+}
+.alpha-modal .modal-content .modal-header .modal-title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #1A1926;
+}
+
+.alpha-project-form {
+  padding: 0 10px;
+}
+.alpha-project-form .project-img {
+  height: 100px;
+  width: 150px;
+  border-radius: 30px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.alpha-project-form .project-img img {
+  width: 70%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+.description-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Custom Summernote Styling */
+.note-editor.note-frame {
+  border: 1px solid rgb(235, 238, 242) !important;
+  border-radius: 8px !important;
+}
+
+.note-editor .note-editing-area .note-editable {
+  padding: 10px 20px !important;
+  max-height: 100px !important;
+}
+
+.note-editor .note-editing-area .note-placeholder {
+  font-family: Nunito;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 100% !important;
+  letter-spacing: 0% !important;
+  padding: 15px 20px !important;
+  color: #637085 !important;
+}
+
+.note-toolbar {
+  background-color: #fff !important;
+  border-bottom: 1px solid #eee !important;
+  padding: 8px !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+
+.note-btn {
+  border-color: transparent !important;
+  background-color: transparent !important;
+  padding: 5px 8px !important;
+}
+
+.note-btn:hover {
+  background-color: #f1f1f1 !important;
+}
+
+/* Active button state */
+.note-btn.active,
+.note-btn.note-btn-primary {
+  background-color: #e3e3e3 !important;
+  border-color: #ccc !important;
+}
+
+/* Custom active state for format buttons */
+.note-editor .note-toolbar .note-btn[data-original-title=Bold].active,
+.note-editor .note-toolbar .note-btn[data-original-title=Italic].active,
+.note-editor .note-toolbar .note-btn[data-original-title=Underline].active,
+.note-editor .note-toolbar .note-btn[data-original-title="Align left"].active,
+.note-editor .note-toolbar .note-btn[data-original-title="Align center"].active,
+.note-editor .note-toolbar .note-btn[data-original-title="Align right"].active,
+.note-editor .note-toolbar .note-btn[data-original-title="Unordered list"].active,
+.note-editor .note-toolbar .note-btn[data-original-title="Ordered list"].active,
+.note-editor .note-toolbar .note-btn[data-original-title=Link].active {
+  background-color: #e3e3e3 !important;
+  border-color: #ccc !important;
+}
+
+/* Move toolbar to bottom */
+.note-editor.note-frame .note-editing-area {
+  order: 1;
+}
+
+.note-editor.note-frame .note-toolbar {
+  order: 2;
+  border-top: 1px solid rgb(235, 238, 242) !important;
+  border-bottom: none !important;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.note-editor.note-frame {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-editor.note-frame .note-statusbar {
+  display: none !important;
+}
+
+/*# sourceMappingURL=style.css.map */
